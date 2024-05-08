@@ -204,6 +204,7 @@ const fetcher = async (url: string, init?: RequestInit) => {
     }
   }
 
+//  console.log(`Azure Cog Search Response: ${response.json()}`);
   return await response.json();
 };
 

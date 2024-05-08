@@ -18,7 +18,7 @@ export const ChatTypeSelector: FC<Prop> = (props) => {
       defaultValue={chatBody.chatType}
       onValueChange={(value) => onChatTypeChange(value as ChatType)}
     >
-      <TabsList className="grid w-full grid-cols-2 h-12 items-stretch">
+      <TabsList className="grid w-full grid-cols-4 h-12 items-stretch">
        <TabsTrigger
           value="simple"
           className="flex gap-1"
@@ -33,6 +33,20 @@ export const ChatTypeSelector: FC<Prop> = (props) => {
         >
           <Globe size={20} /> Web検索
         </TabsTrigger>   
+        <TabsTrigger
+          value="document"
+          className="flex gap-1"
+          disabled={props.disable}
+        >
+          <File size={20} /> 社内文書
+        </TabsTrigger>      
+        <TabsTrigger
+          value="data"
+          className="flex gap-1"
+          disabled={props.disable}
+        >
+          <FileText size={20} /> 文章要約
+        </TabsTrigger>      
       </TabsList>
     </Tabs>
   );

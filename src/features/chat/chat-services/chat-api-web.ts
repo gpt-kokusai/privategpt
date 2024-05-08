@@ -11,6 +11,8 @@ export const ChatAPIWeb = async (props: PromptGPTProps) => {
   var snippet = "";
   var Prompt = "";
   var BingResult = "";
+  var url = "";
+
   const { lastHumanMessage, chatThread } = await initAndGuardChatSession(props);
 
   const openAI = OpenAIInstance();
@@ -26,15 +28,26 @@ export const ChatAPIWeb = async (props: PromptGPTProps) => {
   snippet += searchResult.webPages.value[3].snippet;
   snippet += searchResult.webPages.value[4].snippet; 
 
+  url = searchResult.webPages.value[0].url + "\n" ;
+  url += searchResult.webPages.value[1].url + "\n";
+  url += searchResult.webPages.value[2].url + "\n";
+  url += searchResult.webPages.value[3].url + "\n";
+  url += searchResult.webPages.value[4].url + "\n";
+  
+
+
   BingResult = + searchResult.webPages.value[0].name + "\n" + searchResult.webPages.value[0].snippet + "\n";
   BingResult += + searchResult.webPages.value[1].name + "\n" + searchResult.webPages.value[1].snippet + "\n";
   BingResult += + searchResult.webPages.value[2].name + "\n" + searchResult.webPages.value[2].snippet + "\n";
   BingResult += + searchResult.webPages.value[3].name + "\n" + searchResult.webPages.value[3].snippet + "\n";
   BingResult += + searchResult.webPages.value[4].name + "\n" + searchResult.webPages.value[4].snippet + "\n";
 
-  Prompt = "次の{問い合わせ}について、{Web検索結果}を元に1000文字程度で回答を生成してください。" ;
-  Prompt += "【問い合わせ】 "  + lastHumanMessage.content ;
-  Prompt += "【Web検索結果】" + snippet; 
+  console.log(url);
+  Prompt = "次の{問い合わせ}について、{Web検索結果}を元に2000文字程度で回答を生成してください。" ;
+   //Prompt += "### 回答サンプル　{問い合わせ}についてBing検索結果を元に回答を生成しました。参照したURLは{Web検索結果}をご参照ください" ; ;
+  Prompt += "### 問い合わせ "  + lastHumanMessage.content ;
+  Prompt += "### Web検索結果" + snippet; 
+  Prompt += "回答の最後に参照URLとして" + url + "を記載してください。" ;
 
   const chatHistory = new CosmosDBChatMessageHistory({
     sessionId: chatThread.id,
