@@ -40,13 +40,13 @@ const ChatInput: FC<Props> = (props) => {
       onSubmit={submit}
       className="absolute bottom-0 w-full flex items-center"
     >
-      <div className="container mx-auto max-w-4xl relative py-2 flex gap-2 items-center">
+      <div className="container mx-auto max-w-4xl relative py-4 flex gap-2 items-center">
         {fileCHatVisible && <ChatFileSlider />}
         <Textarea
           rows={rows}
           value={input}
           placeholder="ChatGPTにメッセージを送る"
-          className="min-h-fit bg-background shadow-sm resize-none py-4 pr-[80px]"
+          className="min-h-fit bg-background shadow-sm resize-y py-4 pr-[80px]"
           onKeyUp={onKeyUp}
           onKeyDown={onKeyDown}
           onChange={onChange}

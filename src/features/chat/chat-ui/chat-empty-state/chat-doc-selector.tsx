@@ -9,7 +9,7 @@ interface Prop {
   disable: boolean;
 }
 
-export const ChatTypeSelector: FC<Prop> = (props) => {
+export const ChatDocSelector: FC<Prop> = (props) => {
   const { data: session } = useSession();
   const { chatBody, onChatTypeChange } = useChatContext();
   let tabList_grid_clos  = "grid w-full grid-cols-4 h-12 items-stretch";
@@ -18,28 +18,28 @@ export const ChatTypeSelector: FC<Prop> = (props) => {
       defaultValue={chatBody.chatType}
       onValueChange={(value) => onChatTypeChange(value as ChatType)}
     >
-      <TabsList className="grid w-full grid-cols-3 h-12 items-stretch">
+      <TabsList className="grid w-full grid-cols-4 h-12 items-stretch">
       <TabsTrigger
          value="simple"
          className="flex gap-1"
          disabled={props.disable}
        >
-         <MessageCircle size={20} /> 通常利用
+         <MessageCircle size={20} /> 人事
        </TabsTrigger>    
        <TabsTrigger
          value="web"
          className="flex gap-1"
          disabled={props.disable}
        >
-         <Globe size={20} /> Web検索
+         <Globe size={20} /> 経理
        </TabsTrigger>   
        <TabsTrigger
-         value="data"
+         value="document"
          className="flex gap-1"
          disabled={props.disable}
        >
-         <FileText size={20} /> 文章要約
-       </TabsTrigger>      
+         <File size={20} /> ITヘルプデスク
+       </TabsTrigger>  
      </TabsList>      
        
 
