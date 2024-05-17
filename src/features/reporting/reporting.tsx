@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
 // CSV Download
-//import {downloadCSV} from "../common/csv";
+import {CSV_Download} from "./download-csv";
 // import { useState } from "react";
 
 import {
@@ -23,6 +24,11 @@ export type ReportingProp = {
   };
 };
 
+
+
+
+
+
 export const Reporting = async (props: ReportingProp) => {
   let _pageNumber = Number(props.searchParams.pageNumber ?? 0);
   let pageSize = Number(props.searchParams.pageSize ?? 10);
@@ -37,7 +43,18 @@ export const Reporting = async (props: ReportingProp) => {
 
   const hasMoreResults = chatThreads && chatThreads.length === pageSize;
 // CSV Download
+/*const downloadCSV = () => {
+  const csvData = `Name,Email,Phone\nJohn Doe,johndoe@example.com,1234567890\nJane Smith,janesmith@example.com,9876543210`;
 
+  const blob = new Blob([csvData], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', 'sample.csv');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};*/
 
  // const [ isProcessing, setIsProcessing ] = useState( false );
 
@@ -47,7 +64,9 @@ export const Reporting = async (props: ReportingProp) => {
         <div>
           <h2 className="text-2xl font-bold tracking-tight">会話履歴を表示しています。</h2>
           <p className="text-muted-foreground">全ユーザーの会話履歴（管理者限定機能）　　　　
-          <button /*onClick={() => downloadCSV()}*/>Download CSV</button>
+          <Link href={"/CSV_Download/" }>
+          <Button >Download CSV</Button>
+          </Link>
           </p>
         </div>
         <div className="flex items-center space-x-2">

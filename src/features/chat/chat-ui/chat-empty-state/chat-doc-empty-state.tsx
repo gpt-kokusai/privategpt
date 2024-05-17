@@ -23,10 +23,8 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
           {AI_NAME}にようこそ！
         </Typography>
           <p className="text-xs text-muted-foreground">
-            このChatGPT搭載のAIチャットボットは、社内利用限定で公開されています。
-            まだまだ未熟なAIですが、皆様のご協力により、AIの成長を目指しています。
-            ご利用の際は、以下の項目を選択してください。
-
+            社内情報をもとに回答を行います。
+            
           </p>
 
 
@@ -38,7 +36,7 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-muted-foreground">
-            AIがお手伝いする方法を選択してください。
+            部門を選択してください
           </p>
           <ChatDocSelector disable={false} />
         </div>
